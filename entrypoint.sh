@@ -37,4 +37,5 @@ if [ ! -f "$HOME/.kube/config" ]; then
     fi
 fi
 
-kubectl $*
+output=$(kubectl $*)
+echo "::set-output name=result::$output"
