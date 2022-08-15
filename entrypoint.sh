@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 set -e
 
@@ -38,4 +38,10 @@ if [ ! -f "$HOME/.kube/config" ]; then
 fi
 
 output=$(kubectl $*)
+
+# Format for multiline output
+output="${output//'%'/'%25'}"
+output="${output//$'\n'/'%0A'}"
+output="${output//$'\r'/'%0D'}"
+
 echo "::set-output name=result::$output"
